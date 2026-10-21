@@ -1,0 +1,38 @@
+{
+  "name": "@play/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "migrate": "tsx src/db/migrate.ts up",
+    "migrate:down": "tsx src/db/migrate.ts down",
+    "migrate:test": "cross-env JWT_SECRET=0123456789abcdef0123456789abcdef DATABASE_URL=postgresql://postgres:postgres@localhost:5432/play_test tsx src/db/migrate.ts up",
+    "test": "cross-env NODE_ENV=test DATABASE_URL=postgresql://postgres:postgres@localhost:5432/play_test node --import tsx --test --test-concurrency=1 --test-force-exit test/auth-rooms.test.ts test/realtime.test.ts test/lifecycle.test.ts test/services.test.ts"
+  },
+  "dependencies": {
+    "@fastify/cors": "^10.0.1",
+    "@fastify/helmet": "^12.0.1",
+    "@play/shared": "*",
+    "argon2": "^0.41.1",
+    "dotenv": "^16.4.5",
+    "fastify": "^5.1.0",
+    "jose": "^5.9.6",
+    "pg": "^8.13.1",
+    "pino": "^9.5.0",
+    "socket.io": "^4.8.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "@types/pg": "^8.11.10",
+    "cross-env": "^7.0.3",
+    "socket.io-client": "^4.8.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "play",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Play - plataforma de salas musicales sincronizadas",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "npm run build -w @play/shared && npm run build -w @play/server && npm run build -w @play/web",
+    "typecheck": "npm run typecheck -w @play/shared && npm run typecheck -w @play/server && npm run typecheck -w @play/web",
+    "test": "npm run test -w @play/shared && npm run test -w @play/server && npm run test -w @play/web",
+    "dev:server": "npm run dev -w @play/server",
+    "dev:web": "npm run dev -w @play/web",
+    "migrate": "npm run migrate -w @play/server",
+    "migrate:test": "npm run migrate:test -w @play/server"
+  }
+}
